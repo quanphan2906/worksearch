@@ -6,7 +6,6 @@ class Company(db.Model):
     __tablename__ = "company"
     company_id = db.Column(db.String(255), primary_key=True)
     name = db.Column(db.String(255))
-    industry = db.Column(db.String(255))
     established_year = db.Column(db.Integer)
     size = db.Column(db.String(255))
     location = db.Column(db.String(255))
@@ -14,7 +13,19 @@ class Company(db.Model):
     website = db.Column(db.String(255))
 
     # relationships
+    industries = db.relationship("CompanyIndustry", back_populates="company")
     job_postings = db.relationship("JobPosting", back_populates="company")
+
+
+class CompanyIndustry(db.Model):
+    __tablename__ = "company_industry"
+    company_id = db.Column(
+        db.String(255), db.ForeignKey("company.company_id"), primary_key=True
+    )
+    company_industry = db.Column(db.String(255), primary_key=True)
+
+    # relationships
+    company = db.relationship("Company", back_populates="industries")
 
 
 class JobPosting(db.Model):
