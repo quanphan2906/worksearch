@@ -2,7 +2,7 @@ from flask import Flask
 from .extension import db
 from .auth.routes import auth
 from .application.routes import application
-from .query.routes import query
+from .random_query.routes import random_query
 from .job.routes import job
 from flask_login import LoginManager
 
@@ -19,7 +19,7 @@ def create_app(config_file="config.py"):
     app.register_blueprint(auth)
     app.register_blueprint(application)
     app.register_blueprint(job)
-    app.register_blueprint(query)
+    app.register_blueprint(random_query)
 
     # Login Manager
     from .models import User
