@@ -14,6 +14,9 @@ def _extract_job_posting_data(job_posting_objects, populate_related=False):
             "requirements": posting.requirements,
             "open_positions": posting.open_positions,
             "company_id": posting.company_id,
+            "company_name": "Confidential"
+            if posting.company is None
+            else posting.company.name,
         }
 
         if populate_related:
