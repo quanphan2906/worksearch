@@ -91,7 +91,7 @@ def top_company_industries():
         for industry, job_post_count, average_salary in industry_counts
     ]
 
-    return jsonify(result)
+    return jsonify({"data": result})
 
 
 """
