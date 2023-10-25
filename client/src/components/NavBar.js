@@ -16,6 +16,11 @@ function Navbar() {
 						Queries
 					</Link>
 				</li>
+				<li className={styles.li}>
+					<Link className={styles.a} href="/apply">
+						Apply
+					</Link>
+				</li>
 			</ul>
 		</nav>
 	);
