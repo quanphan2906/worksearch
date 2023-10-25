@@ -39,8 +39,8 @@ def industry_postings(industry):
 
 @job.route("/skills")
 def skill_postings():
-    data = request.json
-    skills = data["skills"]
+    param = request.args.get("skills")
+    skills = param.split(",")
 
     job_postings = JobPosting.query.filter(
         JobPosting.skills.any(JobSkill.skill.in_(skills))
