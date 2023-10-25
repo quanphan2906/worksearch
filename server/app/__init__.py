@@ -5,11 +5,13 @@ from .application.routes import application
 from .random_query.routes import random_query
 from .job.routes import job
 from flask_login import LoginManager
+from flask_cors import CORS
 
 
 def create_app(config_file="config.py"):
     # Init
     app = Flask(__name__)
+    CORS(app)
 
     # Init db and config
     app.config.from_pyfile(config_file)

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..models import Company, JobPosting, JobSkill
+from ..models import Company, JobPosting, JobSkill, CompanyIndustry
 from ..helper import _extract_job_posting_data
 
 
@@ -21,9 +21,13 @@ def company_postings(company_id):
 
 @job.route("/industry/<industry>")
 def industry_postings(industry):
-    job_postings = JobPosting.query.filter(
-        JobPosting.company.has(industry=industry)
-    ).all()
+    # Query job postings associated with companies in the specified industry
+    job_postings = (
+        JobPosting.query.join(Company)
+        .join(CompanyIndustry)
+        .filter(CompanyIndustry.company_industry == industry)
+        .all()
+    )
 
     if not job_postings:
         return jsonify(
