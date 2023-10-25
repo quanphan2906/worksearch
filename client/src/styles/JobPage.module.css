@@ -1,0 +1,10 @@
+.searchWrapper {
+  margin: 12px 20%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: space-around;
+}
