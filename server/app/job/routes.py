@@ -14,9 +14,7 @@ def company_postings(company_id):
         return jsonify({"data": [], "status": 200})
 
     job_posting_objects = company.job_postings
-    return jsonify(
-        {"data": _extract_job_posting_data(job_posting_objects), "status": 200}
-    )
+    return jsonify({"data": _extract_job_posting_data(job_posting_objects)}), 200
 
 
 @job.route("/industry/<industry>")
@@ -27,7 +25,7 @@ def industry_postings(industry):
         .filter(CompanyIndustry.company_industry == industry)
         .all()
     )
-    return jsonify({"data": _extract_job_posting_data(job_postings), "status": 200})
+    return jsonify({"data": _extract_job_posting_data(job_postings)}), 200
 
 
 @job.route("/skills")
@@ -39,4 +37,4 @@ def skill_postings():
         JobPosting.skills.any(JobSkill.skill.in_(skills))
     ).all()
 
-    return jsonify({"data": _extract_job_posting_data(job_postings), "status": 200})
+    return jsonify({"data": _extract_job_posting_data(job_postings)}), 200

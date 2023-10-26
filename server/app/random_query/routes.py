@@ -91,7 +91,7 @@ def top_company_industries():
         for industry, job_post_count, average_salary in industry_counts
     ]
 
-    return jsonify({"data": result})
+    return jsonify({"data": result}), 200
 
 
 """
@@ -112,7 +112,7 @@ def top_skills():
     top_skills = skill_counts.all()
     result = [{"skill": skill, "count": count} for skill, count in top_skills]
 
-    return jsonify({"data": result})
+    return jsonify({"data": result}), 200
 
 
 """
@@ -154,7 +154,7 @@ def top_startups():
         for company_id, name, established_year, vacancies in top_startups
     ]
 
-    return jsonify({"data": result})
+    return jsonify({"data": result}), 200
 
 
 """
@@ -216,7 +216,7 @@ def top_paying_companies():
         for company_id, name, avg_salary in top_paying_companies
     ]
 
-    return jsonify({"data": result})
+    return jsonify({"data": result}), 200
 
 
 """
@@ -249,4 +249,4 @@ def top_categories():
         for category, count in top_categories
     ]
 
-    return jsonify({"data": result})
+    return jsonify({"data": result}), 200
