@@ -1,0 +1,27 @@
+.searchBoxWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchBox{
+  padding: 1rem;
+  font-size: medium;
+  background-color: rgb(249, 250, 251);
+  border: thin solid rgb(229, 231, 235);
+  border-radius: 0.5rem;
+  font-size: .8rem;
+  line-height: 1.25rem;
+  width: 100%;
+  outline: none;
+}
+
+.searchBox:focus {
+  border: 1.75px solid rgb(26, 86, 219);
+}
+
+.btn {
+  position: absolute;
+  right: 1rem;
+  font-size: .8rem;
+}

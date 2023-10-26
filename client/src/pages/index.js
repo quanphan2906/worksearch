@@ -1,5 +1,5 @@
-import styles from "@/styles/Home.module.css";
+import JobPage from "./jobs";
 
 export default function Home() {
-	return <div></div>;
+	return <JobPage />;
 }

@@ -1,0 +1,6 @@
+.select {
+  border: thin solid;
+  border-color: rgb(229, 231, 235);
+  padding: 0.5rem 8px;
+  border-radius: 4px;
+}

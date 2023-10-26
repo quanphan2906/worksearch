@@ -1,7 +1,11 @@
 .searchWrapper {
-  margin: 12px 20%;
+  margin: 3rem 20%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+}
+
+.searchWrapper > * {
+  margin-top: 8px; /* Set the top margin */
 }
 
 .mainContent {
