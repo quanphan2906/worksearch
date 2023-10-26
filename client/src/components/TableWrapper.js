@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Table from "rc-table";
 import { getTop } from "@/services/randomQueries";
+import styles from "@/styles/TableWrapper.module.css";
 
-function TableWrapper({ endPoint }) {
+function TableWrapper({ title, columnNames, dataIndices, endPoint }) {
 	const [tableData, setTableData] = useState([]);
 
 	useEffect(() => {
@@ -24,9 +25,14 @@ function TableWrapper({ endPoint }) {
 			  });
 
 	return (
-		<div>
-			<Table columns={columns} data={tableData} />
-		</div>
+		<Table
+			columns={columns}
+			data={tableData}
+			className={styles.table}
+			title={() => {
+				return title;
+			}}
+		/>
 	);
 }
 
