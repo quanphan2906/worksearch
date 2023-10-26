@@ -10,7 +10,7 @@ function JobPage() {
 	const [jobs, setJobs] = useState([]);
 	const [mainJob, setMainJob] = useState({});
 	const [searchBy, setSearchBy] = useState("industry");
-	const [searchText, setSearchText] = useState("Computer Software");
+	const [searchText, setSearchText] = useState("Financial Services");
 
 	useEffect(() => {
 		const fetchData = async () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "@/styles/JobDetail.module.css";
+import Button from "./Button";
 
 function JobDetail({ job }) {
 	if (Object.keys(job).length === 0) {
@@ -30,6 +31,9 @@ function JobDetail({ job }) {
 				})}
 			</p>
 			<p>{job.requirements}</p>
+			<div>
+				<Button text="Apply" />
+			</div>
 		</div>
 	) : null;
 }
