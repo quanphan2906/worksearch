@@ -17,8 +17,10 @@ def _extract_job_posting_data(job_posting_objects, populate_related=False):
             "company_name": "Confidential"
             if posting.company is None
             else posting.company.name,
-            "skills": posting.skills,
-            "employment_basis": posting.employment_basis,
+            "skills": [s.skill for s in posting.skills],
+            "employment_basis": [
+                eb.employment_basis for eb in posting.employment_basis
+            ],
         }
 
         if populate_related:
