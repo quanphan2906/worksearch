@@ -17,16 +17,16 @@ def apply():
     cover_letter = data.get("cover_letter")
 
     if not user_email:
-        return jsonify({"message": "Missing email", "status": 400})
+        return jsonify({"message": "Missing email"}), 400
     if not job_id:
-        return jsonify({"message": "Missing job id", "status": 400})
+        return jsonify({"message": "Missing job id"}), 400
 
     user = User.query.filter_by(email=user_email).first()
     job_posting = JobPosting.query.filter_by(job_id=job_id).first()
     if not user:
-        return jsonify({"message": "User doesn't exist", "status": 400})
+        return jsonify({"message": "User doesn't exist"}), 400
     if not job_posting:
-        return jsonify({"message": "Job posting doesn't exist", "status": 400})
+        return jsonify({"message": "Job posting doesn't exist"}), 400
 
     new_application = Application(
         user_email=user_email,
@@ -39,6 +39,6 @@ def apply():
         db.session.add(new_application)
         db.session.commit()
     except Exception as e:
-        return jsonify({"message": str(e.args[0]), "status": 500})
+        return jsonify({"message": str(e.args[0])}), 500
 
-    return jsonify({"message": "Successfully applied", "status": 200})
+    return jsonify({"message": "Successfully applied"}), 200

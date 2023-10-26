@@ -19,6 +19,9 @@ def register():
     gpa = data.get("gpa")
     user_name = data.get("user_name")
 
+    if email is None or password is None:
+        return jsonify({"message": "Make sure email and password exists"}), 400
+
     user = User.query.filter_by(email=email).first()
     if user:
         return jsonify({"message": "Email already exists."}), 200
