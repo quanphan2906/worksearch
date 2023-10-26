@@ -9,16 +9,21 @@ import getJobs from "@/services/getJobs";
 function JobPage() {
 	const [jobs, setJobs] = useState([]);
 	const [mainJob, setMainJob] = useState({});
-	const [searchBy, setSearchBy] = useState("company");
-	const [searchText, setSearchText] = useState("");
+	const [searchBy, setSearchBy] = useState("industry");
+	const [searchText, setSearchText] = useState("Computer Software");
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await getJobs(searchBy, searchText);
+			setJobs(res.data);
+			setMainJob(res.data[0]);
+		};
+
+		fetchData();
+	}, []);
 
 	const handleSearchSubmit = async () => {
 		const res = await getJobs(searchBy, searchText);
-		if (res.status != 200) {
-			console.error("There has been an error");
-			return;
-		}
-
 		setJobs(res.data);
 		setMainJob(res.data[0]);
 	};

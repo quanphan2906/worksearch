@@ -10,9 +10,9 @@ from collections import defaultdict
 job = Blueprint("jobs", __name__, url_prefix="/jobs")
 
 
-@job.route("/company/<company_id>")
-def company_postings(company_id):
-    company = Company.query.get(company_id)
+@job.route("/company/<company_name>")
+def company_postings(company_name):
+    company = Company.query.filter_by(name=company_name).first()
     if company is None:
         return jsonify({"data": [], "status": 200})
 

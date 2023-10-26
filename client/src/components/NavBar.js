@@ -9,7 +9,7 @@ function Navbar() {
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.pageTitle}>
-				<p>Cairo Tech</p>
+				<p>Egypt Geek Space</p>
 			</div>
 			<ul className={styles.ul}>
 				<li className={styles.li}>

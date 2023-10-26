@@ -1,4 +1,4 @@
-def _extract_job_posting_data(job_posting_objects, populate_related=False):
+def _extract_job_posting_data(job_posting_objects, populate_related=True):
     job_postings = []
 
     for posting in job_posting_objects:
@@ -14,18 +14,13 @@ def _extract_job_posting_data(job_posting_objects, populate_related=False):
             "requirements": posting.requirements,
             "open_positions": posting.open_positions,
             "company_id": posting.company_id,
-            "company_name": "Confidential"
-            if posting.company is None
-            else posting.company.name,
-            "skills": [s.skill for s in posting.skills],
-            "employment_basis": [
-                eb.employment_basis for eb in posting.employment_basis
-            ],
         }
 
         if populate_related:
             if posting.company:
-                job_posting_data["company_name"] = posting.company.name
+                job_posting_data["company_name"] = (
+                    "Confidential" if posting.company is None else posting.company.name
+                )
             job_posting_data["categories"] = [
                 category.job_category for category in posting.categories
             ]

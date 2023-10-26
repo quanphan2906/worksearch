@@ -1,21 +1,19 @@
 import React from "react";
+import styles from "@/styles/JobPreview.module.css";
 
 function JobPreview({ job, jobIndex, handleMainJobChange }) {
+	const temp = job.location.split("-");
 	return (
-		<div className="job-preview">
-			<div className="job-info">
-				<h3>{job.title}</h3>
-				<p>Company: {job.company_name}</p>
-				<p>Location: {job.location}</p>
-			</div>
-			<div className="job-actions">
-				<button
-					onClick={() => {
-						handleMainJobChange(jobIndex);
-					}}
-				>
-					Details
-				</button>
+		<div
+			className={styles.jobPreviewWrapeer}
+			onClick={() => {
+				handleMainJobChange(jobIndex);
+			}}
+		>
+			<p className={styles.title}>{job.title}</p>
+			<div>
+				<span className={styles.companyName}>{job.company_name}</span> -{""}
+				<span className={styles.location}>{temp[temp.length - 1]}</span>
 			</div>
 		</div>
 	);

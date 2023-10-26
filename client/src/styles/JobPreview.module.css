@@ -1,0 +1,29 @@
+.jobPreviewWrapeer {
+    display: block;
+    /* border: thin solid rgb(229, 231, 235); */
+    padding: 1rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+    margin: 12px 0;
+}
+
+.jobPreviewWrapeer :hover {
+    cursor: pointer;
+}
+
+.jobPreviewWrapeer p {
+    margin: 0;
+}
+
+.jobPreviewWrapeer > * {
+    margin-top: 8px;
+}
+
+.companyName {
+    font-size: .8em;
+}
+
+.location {
+    font-size: .8em;
+    color: rgba(0, 0, 0, 0.6);
+}
