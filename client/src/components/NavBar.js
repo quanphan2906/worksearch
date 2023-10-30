@@ -1,11 +1,11 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useContext } from "react";
 import Link from "next/link";
 import styles from "@/styles/Navbar.module.css";
 import Button from "./Button";
+import { UserContext } from "@/context/UserContext";
 
-function Navbar() {
-	const router = useRouter();
+function Navbar({ openModal }) {
+	const { user, logout } = useContext(UserContext);
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.pageTitle}>
@@ -22,13 +22,11 @@ function Navbar() {
 						Top X
 					</Link>
 				</li>
-				<Button
-					text="Apply"
-					className={styles.btn}
-					onClick={() => {
-						router.push("/apply");
-					}}
-				/>
+				{user ? (
+					<Button text="Logout" className={styles.btn} onClick={logout} />
+				) : (
+					<Button text="Login" className={styles.btn} onClick={openModal} />
+				)}
 			</ul>
 		</nav>
 	);

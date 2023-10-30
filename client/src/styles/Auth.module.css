@@ -1,0 +1,32 @@
+.authForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.authForm input {
+	padding: 0.5rem 1rem;
+	font-size: medium;
+	border: thin solid rgb(229, 231, 235);
+	border-radius: 0.5rem;
+	font-size: 0.8rem;
+	line-height: 1.25rem;
+	outline: none;
+}
+
+.authForm input:focus {
+	border: 1.5px solid rgb(26, 86, 219);
+}
+
+.authForm > * {
+	margin: 1rem 0;
+}
+
+.btnWrapper {
+	display: flex;
+	justify-content: right;
+}
+
+.btn {
+	font-size: 0.8rem;
+	margin-bottom: 0.2rem;
+}

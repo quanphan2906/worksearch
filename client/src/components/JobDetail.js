@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "@/styles/JobDetail.module.css";
 import Button from "./Button";
+import Modal from "./Modal";
+import Apply from "./Apply";
 
 function JobDetail({ job }) {
+	const [isApplyModalOpen, setApplyModal] = useState(false);
+
 	if (Object.keys(job).length === 0) {
 		return <div></div>;
 	}
@@ -26,14 +30,23 @@ function JobDetail({ job }) {
 			<p>{job.salary}</p>
 			<h3>Requirements</h3>
 			<p>
-				{job.skills.map((skill) => {
-					return <span> {skill}, </span>;
+				{job.skills.map((skill, i) => {
+					return <span key={i}> {skill}, </span>;
 				})}
 			</p>
 			<p>{job.requirements}</p>
 			<div>
-				<Button text="Apply" />
+				<Button
+					text="Apply"
+					onClick={() => {
+						setApplyModal(true);
+					}}
+				/>
 			</div>
+
+			<Modal isOpen={isApplyModalOpen} closeModal={() => setApplyModal(false)}>
+				<Apply jobId={job.job_id} closeModal={() => setApplyModal(false)} />
+			</Modal>
 		</div>
 	) : null;
 }

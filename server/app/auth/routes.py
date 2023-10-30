@@ -44,7 +44,15 @@ def register():
     db.session.commit()
     login_user(new_user, remember=True)
 
-    return jsonify({"message": "Registration succeeds"}), 200
+    user_data = {
+        "email": new_user.email,
+        "gender": new_user.gender,
+        "birth_date": new_user.birth_date,
+        "gpa": new_user.gpa,
+        "user_name": new_user.user_name,
+    }
+
+    return jsonify({"message": "Registration succeeds", "data": user_data}), 200
 
 
 @auth.route("/login", methods=["POST"])
@@ -61,11 +69,22 @@ def login():
         return jsonify({"message": "Incorrect password, try again"}), 400
 
     login_user(user, remember=True)
-    return jsonify({"message": "Logged in"}), 200
+    print("current_user.is_authenticated", current_user.is_authenticated)
+
+    # Return the user data in the response
+    user_data = {
+        "email": user.email,
+        "gender": user.gender,
+        "birth_date": user.birth_date,
+        "gpa": user.gpa,
+        "user_name": user.user_name,
+    }
+
+    return jsonify({"message": "Logged in", "data": user_data}), 200
 
 
 @auth.route("/logout")
-@login_required
+# @login_required
 def logout():
     logout_user()
     return jsonify({"message": "Logged out succeed!"}), 200
