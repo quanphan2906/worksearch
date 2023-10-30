@@ -147,7 +147,7 @@ def top_startups():
     result = [
         {
             "company_id": company_id,
-            "name": name,
+            "company_name": name,
             "established_year": established_year,
             "vacancies": vacancies,
         }

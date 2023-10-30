@@ -14,15 +14,10 @@ function TableWrapper({ title, columnNames, dataIndices, endPoint }) {
 		fetchData();
 	}, []);
 
-	const columns =
-		tableData.length == 0
-			? []
-			: Object.keys(tableData[0]).map((key) => {
-					return {
-						title: key,
-						dataIndex: key,
-					};
-			  });
+	const columns = columnNames.map((column, index) => ({
+		title: column,
+		dataIndex: dataIndices[index],
+	}));
 
 	return (
 		<Table
