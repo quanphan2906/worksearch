@@ -84,8 +84,8 @@ def top_company_industries():
         {
             "industry": industry,
             "job_post_count": job_post_count,
-            "average_salary": None
-            if average_salary is None
+            "average_salary": "Not available"
+            if (average_salary is None or average_salary == 0)
             else round(average_salary, 2),
         }
         for industry, job_post_count, average_salary in industry_counts
@@ -134,7 +134,7 @@ def top_startups():
         )
         .join(JobPosting, Company.company_id == JobPosting.company_id)
         .filter(
-            extract("year", func.now()) - Company.established_year > 3,
+            extract("year", func.now()) - Company.established_year <= 3,
             Company.name != "",
         )
         .group_by(Company.company_id)
