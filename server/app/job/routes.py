@@ -27,7 +27,9 @@ def industry_postings(industry):
         .join(CompanyIndustry)
         .filter(CompanyIndustry.company_industry == industry)
         .options(
-            joinedload("company"), joinedload("skills"), joinedload("employment_basis")
+            joinedload(JobPosting.company),
+            joinedload(JobPosting.skills),
+            joinedload(JobPosting.employment_basis),
         )
         .all()
     )
@@ -91,7 +93,9 @@ def skill_postings():
     job_postings = (
         JobPosting.query.filter(JobPosting.skills.any(JobSkill.skill.in_(skills)))
         .options(
-            joinedload("company"), joinedload("skills"), joinedload("employment_basis")
+            joinedload(JobPosting.company),
+            joinedload(JobPosting.skills),
+            joinedload(JobPosting.employment_basis),
         )
         .all()
     )
