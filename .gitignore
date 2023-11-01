@@ -1,5 +1,6 @@
 .vscode/
 __pycache__/
+virtualenv/
 .env*
 node_modules
 
