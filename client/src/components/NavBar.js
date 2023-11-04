@@ -22,6 +22,11 @@ function Navbar({ openModal }) {
 						Top X
 					</Link>
 				</li>
+				<li className={styles.li}>
+					<Link className={styles.a} href="/application">
+						My applications
+					</Link>
+				</li>
 				{user ? (
 					<Button text="Logout" className={styles.btn} onClick={logout} />
 				) : (

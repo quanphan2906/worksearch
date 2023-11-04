@@ -20,3 +20,15 @@ export const apply = async (user_email, job_id, cover_letter) => {
 	}
 	return response.json();
 };
+
+export const getApplications = async (userEmail) => {
+	const url = `${API_ENDPOINT}/application/u/${encodeURIComponent(userEmail)}`;
+	const response = await fetch(url);
+
+	if (!response.ok) {
+		throw new Error(response.message);
+	}
+
+	const applications = await response.json();
+	return applications;
+};

@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "@/styles/JobDetail.module.css";
 import Button from "./Button";
 import Modal from "./Modal";
 import Apply from "./Apply";
+import { UserContext } from "@/context/UserContext";
 
 function JobDetail({ job }) {
+	const { user } = useContext(UserContext);
 	const [isApplyModalOpen, setApplyModal] = useState(false);
+
+	const handleApply = () => {
+		if (user && user.email) {
+			setApplyModal(true);
+		} else {
+			alert("Please login before you apply!");
+		}
+	};
 
 	if (Object.keys(job).length === 0) {
 		return <div></div>;
@@ -36,12 +46,7 @@ function JobDetail({ job }) {
 			</p>
 			<p>{job.requirements}</p>
 			<div>
-				<Button
-					text="Apply"
-					onClick={() => {
-						setApplyModal(true);
-					}}
-				/>
+				<Button text="Apply" onClick={handleApply} />
 			</div>
 
 			<Modal isOpen={isApplyModalOpen} closeModal={() => setApplyModal(false)}>
