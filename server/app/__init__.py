@@ -12,9 +12,7 @@ from .config import FRONT_END_URL
 def create_app(config_file="config.py"):
     # Init
     app = Flask(__name__)
-    CORS(
-        app, supports_credentials=True, origins=["http://localhost:3000", FRONT_END_URL]
-    )
+    CORS(app, supports_credentials=True, origins=[FRONT_END_URL])
 
     # Init db and config
     app.config.from_pyfile(config_file)

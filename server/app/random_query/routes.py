@@ -38,34 +38,28 @@ def top_company_industries():
             func.count(JobPosting.job_id).label("job_posting_count"),
             func.avg(
                 case(
-                    [
+                    (
+                        JobPosting.salary.like("% to % EGP Per Month"),
                         (
-                            JobPosting.salary.like("% to % EGP Per Month"),
-                            (
-                                cast(
-                                    func.substring_index(
-                                        func.substring_index(
-                                            JobPosting.salary, " to ", 1
-                                        ),
-                                        " EGP",
-                                        1,
-                                    ),
-                                    db.Float,
-                                )
-                                + cast(
-                                    func.substring_index(
-                                        func.substring_index(
-                                            JobPosting.salary, " to ", -1
-                                        ),
-                                        " EGP",
-                                        1,
-                                    ),
-                                    db.Float,
-                                )
+                            cast(
+                                func.substring_index(
+                                    func.substring_index(JobPosting.salary, " to ", 1),
+                                    " EGP",
+                                    1,
+                                ),
+                                db.Float,
                             )
-                            / 2,
+                            + cast(
+                                func.substring_index(
+                                    func.substring_index(JobPosting.salary, " to ", -1),
+                                    " EGP",
+                                    1,
+                                ),
+                                db.Float,
+                            )
                         )
-                    ],
+                        / 2,
+                    ),
                     else_=None,
                 )
             ).label("average_salary_range"),
@@ -170,34 +164,28 @@ def top_paying_companies():
             Company.name,
             func.avg(
                 case(
-                    [
+                    (
+                        JobPosting.salary.like("% to % EGP Per Month"),
                         (
-                            JobPosting.salary.like("% to % EGP Per Month"),
-                            (
-                                cast(
-                                    func.substring_index(
-                                        func.substring_index(
-                                            JobPosting.salary, " to ", 1
-                                        ),
-                                        " EGP",
-                                        1,
-                                    ),
-                                    db.Float,
-                                )
-                                + cast(
-                                    func.substring_index(
-                                        func.substring_index(
-                                            JobPosting.salary, " to ", -1
-                                        ),
-                                        " EGP",
-                                        1,
-                                    ),
-                                    db.Float,
-                                )
+                            cast(
+                                func.substring_index(
+                                    func.substring_index(JobPosting.salary, " to ", 1),
+                                    " EGP",
+                                    1,
+                                ),
+                                db.Float,
                             )
-                            / 2,
+                            + cast(
+                                func.substring_index(
+                                    func.substring_index(JobPosting.salary, " to ", -1),
+                                    " EGP",
+                                    1,
+                                ),
+                                db.Float,
+                            )
                         )
-                    ],
+                        / 2,
+                    ),
                     else_=None,
                 )
             ).label("average_salary"),
