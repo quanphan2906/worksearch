@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 
 from ..extension import db
-from ..models import Application, User, JobPosting
+from ..models import Application, User, JobPosting, Company
 
 
 application = Blueprint("application", __name__, url_prefix="/application")
@@ -42,3 +42,38 @@ def apply():
         return jsonify({"message": str(e.args[0])}), 500
 
     return jsonify({"message": "Successfully applied"}), 200
+
+
+@application.route("/u/<user_email>")
+def get_user_applications(user_email):
+    # Perform an explicit join and select only the required columns
+    applications = (
+        db.session.query(
+            Application.application_date,
+            Application.cover_letter,
+            JobPosting.title,
+            JobPosting.location,
+            Company.name,
+        )
+        .join(JobPosting, Application.job_id == JobPosting.job_id)
+        .join(Company, JobPosting.company_id == Company.company_id)
+        .filter(Application.user_email == user_email)
+        .order_by(Application.application_date.desc())
+        .all()
+    )
+
+    # Construct the applications list with only the necessary information
+    applications_list = [
+        {
+            "application_date": application_date.isoformat()
+            if application_date
+            else None,
+            "cover_letter": cover_letter,
+            "job_title": title,
+            "job_location": location,
+            "company_name": name,
+        }
+        for application_date, cover_letter, title, location, name in applications
+    ]
+
+    return jsonify(applications_list), 200
