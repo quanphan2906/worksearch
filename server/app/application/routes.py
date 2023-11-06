@@ -56,7 +56,7 @@ def get_user_applications(user_email):
             Company.name,
         )
         .join(JobPosting, Application.job_id == JobPosting.job_id)
-        .join(Company, JobPosting.company_id == Company.company_id)
+        .outerjoin(Company, JobPosting.company_id == Company.company_id)
         .filter(Application.user_email == user_email)
         .order_by(Application.application_date.desc())
         .all()
