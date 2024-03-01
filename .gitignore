@@ -1,6 +1,7 @@
 .vscode/
 __pycache__/
 virtualenv/
+myenv/
 .env*
 node_modules
 
