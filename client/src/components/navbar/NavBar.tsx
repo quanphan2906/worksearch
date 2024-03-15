@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
 import Link from "next/link";
 import styles from "@/styles/Navbar.module.css";
-import Button from "./Button";
-import { UserContext } from "@/context/UserContext";
+import UserAvatar from "./UserAvatar";
 
-function Navbar({ openModal }) {
-	const { user, logout } = useContext(UserContext);
+const Navbar = () => {
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.pageTitle}>
@@ -27,14 +24,10 @@ function Navbar({ openModal }) {
 						My applications
 					</Link>
 				</li>
-				{user ? (
-					<Button text="Logout" className={styles.btn} onClick={logout} />
-				) : (
-					<Button text="Login" className={styles.btn} onClick={openModal} />
-				)}
+				<UserAvatar />
 			</ul>
 		</nav>
 	);
-}
+};
 
 export default Navbar;
