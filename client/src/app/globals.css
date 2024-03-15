@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.border-notion-grey {
+	border-color: rgb(43, 43, 43);
+	border-right-width: 2px;
+}
+
+.notion-sidebar-bg-color {
+	background-color: rgb(32, 32, 32);
+}

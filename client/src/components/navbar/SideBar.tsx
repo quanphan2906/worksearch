@@ -3,8 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const SideBar = () => {
 	return (
-		<aside className="h-full">
-			<nav className="h-full flex flex-col border-r shadow-sm py-12">
+		<aside className="h-full border-r border-notion-grey notion-sidebar-bg-color">
+			<nav className="h-full flex flex-col py-12">
 				<div className="flex items-center py-2 px-6 font-medium hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50 transition-colors rounded">
 					<Avatar>
 						<AvatarImage

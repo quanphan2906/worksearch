@@ -37,7 +37,7 @@ export default function RootLayout({
 			>
 				<UserProvider>
 					<body className={`flex m-0 w-full ${inter.className}`}>
-						<div className="w-1/5">
+						<div className="w-1/4">
 							<Sidebar />
 						</div>
 						<div className="flex-4 w-full flex flex-col items-center justify-center">
