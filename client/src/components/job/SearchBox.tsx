@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/SearchBox.module.css";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { Input } from "@/components/ui/input";
 
 const SearchBox = () => {
 	const router = useRouter();
@@ -18,11 +19,10 @@ const SearchBox = () => {
 
 	return (
 		<form className={styles.searchBoxWrapper} onSubmit={handleSearchSubmit}>
-			<input
-				className={styles.searchBox}
+			<Input
 				type="text"
 				value={currentQuery || ""}
-				placeholder="Search Job Title, Skill Sets, Companies, Industries"
+				placeholder="Search..."
 				onChange={(e) => {
 					setCurrentQuery(e.target.value);
 				}}

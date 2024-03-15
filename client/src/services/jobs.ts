@@ -1,7 +1,7 @@
 import { JobPosting } from "@/models/models";
 import { ServiceResult } from "./ServiceResult";
-import { getFakeJobPostings } from "./dataGenerator";
-// import { API_ENDPOINT } from "./config";
+import { API_ENDPOINT } from "./config";
+import { delay } from "./helper";
 
 // const getJobPostingsByCompany = async (companyId) => {
 // 	const response = await fetch(`${API_ENDPOINT}/jobs/company/${companyId}`);
@@ -41,19 +41,26 @@ import { getFakeJobPostings } from "./dataGenerator";
 
 const getJobs = async (
 	searchBy: string,
-	value: string
-): Promise<ServiceResult<JobPosting[]>> => {
-	const fakeJobPosts = getFakeJobPostings(100);
+	value: string,
+	page: number = 1,
+	limitPerPage: number = 10
+): Promise<ServiceResult<{ jobPostings: JobPosting[]; next: number }>> => {
+	await delay(2000);
 
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve({
-				data: fakeJobPosts,
-				ok: true,
-				message: "All good"!,
-			});
-		}, 3000);
-	});
+	const response = await fetch(
+		`${API_ENDPOINT}/job_postings?_page=${page}&_per_page=${limitPerPage}`
+	);
+
+	if (!response.ok) {
+		return { ok: false, message: "Failed to fetch" };
+	}
+
+	const metadata = await response.json();
+	return {
+		data: { next: metadata.next, jobPostings: metadata.data },
+		ok: true,
+		message: "",
+	};
 };
 
 export default getJobs;

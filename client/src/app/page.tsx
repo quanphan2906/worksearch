@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import SearchByDropDown from "@/components/SearchByDropDown";
-import SearchBox from "@/components/SearchBox";
-// import JobPreviewList from "@/components/JobPreviewList";
+import SearchBox from "@/components/job/SearchBox";
 // import JobDetail from "@/components/JobDetail";
 import styles from "@/styles/JobPage.module.css";
-import JobPreviewList from "@/components/JobPreviewList";
-// import getJobs from "@/services/getJobs";
-// import Spinner from "@/components/Spinner";
+import JobPreviewList from "@/components/job/JobPreviewList";
 
 interface PageInterface {
 	searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const Home = ({ searchParams }: PageInterface) => {
+const Home = async ({ searchParams }: PageInterface) => {
 	const query =
 		searchParams !== undefined ? (searchParams["q"] as string) : "";
 
@@ -23,6 +20,7 @@ const Home = ({ searchParams }: PageInterface) => {
 					searchBy={searchBy}
 					setSearchBy={setSearchBy}
 				/> */}
+
 				<SearchBox />
 			</div>
 			<div className={styles.mainContent}>
