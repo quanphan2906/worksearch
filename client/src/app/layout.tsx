@@ -3,12 +3,22 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import UserProvider from "@/context/UserContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/navbar/NavBar";
+import {
+	Menubar,
+	MenubarContent,
+	MenubarItem,
+	MenubarMenu,
+	MenubarSeparator,
+	MenubarShortcut,
+	MenubarTrigger,
+} from "@/components/ui/menubar";
+
+import Sidebar from "@/components/navbar/SideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Worksearch",
+	title: "Leads",
 	description: "Go-to for software engineering jobs in Egypt",
 };
 
@@ -21,14 +31,18 @@ export default function RootLayout({
 		<html lang="en">
 			<ThemeProvider
 				attribute="class"
-				defaultTheme="light"
+				defaultTheme="dark"
 				enableSystem
 				disableTransitionOnChange
 			>
 				<UserProvider>
-					<body className={inter.className}>
-						{/* <Navbar /> */}
-						{children}
+					<body className={`flex m-0 w-full ${inter.className}`}>
+						<div className="w-1/5">
+							<Sidebar />
+						</div>
+						<div className="flex-4 w-full flex flex-col items-center justify-center">
+							{children}
+						</div>
 					</body>
 				</UserProvider>
 			</ThemeProvider>

@@ -14,8 +14,8 @@ const Home = async ({ searchParams }: PageInterface) => {
 		searchParams !== undefined ? (searchParams["q"] as string) : "";
 
 	return (
-		<div>
-			<div className={styles.searchWrapper}>
+		<div className="flex flex-col items-center justify-center">
+			<div className="w-full py-16">
 				{/* <SearchByDropDown
 					searchBy={searchBy}
 					setSearchBy={setSearchBy}

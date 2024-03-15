@@ -6,6 +6,13 @@ import styles from "@/styles/JobPreviewList.module.css";
 import { JobPosting } from "@/models/models";
 import getJobs from "@/services/jobs";
 import Spinner from "../common/Spinner";
+import {
+	Table,
+	TableBody,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
 
 interface JobPreviewList {
 	query: string;
@@ -59,10 +66,22 @@ const JobPreviewList = ({ query }: JobPreviewList) => {
 	}, [query, page, hasMore]);
 
 	return (
-		<div className={styles.jobPreviewList}>
-			{jobs.map((job: JobPosting, index: number) => (
-				<JobPreview key={index} job={job} jobIndex={index} />
-			))}
+		<div>
+			<Table>
+				<TableHeader>
+					<TableRow>
+						<TableHead>Position</TableHead>
+						<TableHead>Company</TableHead>
+						<TableHead>Location</TableHead>
+					</TableRow>
+				</TableHeader>
+				<TableBody>
+					{jobs.map((job: JobPosting, index: number) => (
+						<JobPreview job={job} key={index} />
+					))}
+				</TableBody>
+			</Table>
+
 			{hasMore ? (
 				<div ref={loader}>
 					<Spinner />

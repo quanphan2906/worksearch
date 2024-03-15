@@ -18,7 +18,7 @@ const SearchBox = () => {
 	};
 
 	return (
-		<form className={styles.searchBoxWrapper} onSubmit={handleSearchSubmit}>
+		<form onSubmit={handleSearchSubmit}>
 			<Input
 				type="text"
 				value={currentQuery || ""}
