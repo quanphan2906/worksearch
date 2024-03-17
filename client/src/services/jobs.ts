@@ -39,7 +39,7 @@ import { delay } from "./helper";
 // 	}
 // };
 
-const getJobs = async (
+export const getJobs = async (
 	searchBy: string,
 	value: string,
 	page: number = 1,
@@ -63,4 +63,21 @@ const getJobs = async (
 	};
 };
 
-export default getJobs;
+export const getJob = async (
+	job_id: string
+): Promise<ServiceResult<JobPosting>> => {
+	await delay(2000);
+
+	const response = await fetch(`${API_ENDPOINT}/job_postings/` + job_id);
+
+	if (!response.ok) {
+		return { ok: false, message: "Failed to fetch" };
+	}
+
+	const data = await response.json();
+	return {
+		data,
+		ok: true,
+		message: "",
+	};
+};

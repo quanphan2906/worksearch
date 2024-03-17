@@ -8,8 +8,11 @@ faker = Faker()
 
 # Assuming Application structure will be provided later
 def generate_fake_user():
+
+    email = faker.email()
     user = {
-        "email": faker.email(),
+        "id": email,
+        "email": email,
         "user_name": faker.user_name(),
         "gender": faker.random_element(elements=("male", "female", "other")),
         "birth_date": faker.date_of_birth(minimum_age=18, maximum_age=65).isoformat(),
@@ -21,8 +24,10 @@ def generate_fake_user():
 
 
 def generate_fake_job_posting():
+    job_id = str(uuid.uuid4())
     job_posting = {
-        "job_id": str(uuid.uuid4()),
+        "id": job_id,
+        "job_id": job_id,
         "title": faker.job(),
         "location": faker.city(),
         "company_name": faker.company(),
@@ -42,16 +47,8 @@ def generate_fake_job_posting():
             if faker.boolean(chance_of_getting_true=50)
             else None
         ),
-        "description": (
-            faker.text(max_nb_chars=200)
-            if faker.boolean(chance_of_getting_true=50)
-            else None
-        ),
-        "requirements": (
-            faker.text(max_nb_chars=100)
-            if faker.boolean(chance_of_getting_true=50)
-            else None
-        ),
+        "description": (faker.text(max_nb_chars=200)),
+        "requirements": (faker.text(max_nb_chars=100)),
         "company_id": str(uuid.uuid4()),
         "categories": faker.words(nb=3),
         "skills": faker.words(nb=5),
@@ -71,8 +68,10 @@ def generate_fake_company():
     company_sizes = ["Small", "Medium", "Large"]
     industries = ["Technology", "Finance", "Healthcare", "Education", "Manufacturing"]
 
+    company_id = str(uuid.uuid4())
     company = {
-        "company_id": str(uuid.uuid4()),
+        "id": company_id,
+        "company_id": company_id,
         "name": faker.company(),
         "established_year": faker.year(),
         "size": faker.random_element(elements=company_sizes),

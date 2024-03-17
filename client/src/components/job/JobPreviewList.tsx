@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import JobPreview from "./JobPreview";
-import styles from "@/styles/JobPreviewList.module.css";
 import { JobPosting } from "@/models/models";
-import getJobs from "@/services/jobs";
+import { getJobs } from "@/services/jobs";
 import Spinner from "../common/Spinner";
 import {
 	Table,
@@ -73,6 +72,7 @@ const JobPreviewList = ({ query }: JobPreviewList) => {
 						<TableHead>Position</TableHead>
 						<TableHead>Company</TableHead>
 						<TableHead>Location</TableHead>
+						<TableHead></TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>

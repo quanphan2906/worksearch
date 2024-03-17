@@ -31,18 +31,18 @@ export default function RootLayout({
 		<html lang="en">
 			<ThemeProvider
 				attribute="class"
-				defaultTheme="dark"
+				defaultTheme="light"
 				enableSystem
 				disableTransitionOnChange
 			>
 				<UserProvider>
-					<body className={`flex m-0 w-full ${inter.className}`}>
+					<body
+						className={`min-h-screen flex m-0 w-full ${inter.className}`}
+					>
 						<div className="w-1/4">
 							<Sidebar />
 						</div>
-						<div className="flex-4 w-full flex flex-col items-center justify-center">
-							{children}
-						</div>
+						<main className="w-full mx-16">{children}</main>
 					</body>
 				</UserProvider>
 			</ThemeProvider>
