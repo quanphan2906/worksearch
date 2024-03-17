@@ -15,11 +15,12 @@ import {
 
 interface JobPreviewList {
 	query: string;
+	initialJobs: JobPosting[];
 }
 
-const JobPreviewList = ({ query }: JobPreviewList) => {
-	const [jobs, setJobs] = useState<JobPosting[]>([]);
-	const [page, setPage] = useState<number>(1);
+const JobPreviewList = ({ query, initialJobs }: JobPreviewList) => {
+	const [jobs, setJobs] = useState<JobPosting[]>(initialJobs);
+	const [page, setPage] = useState<number>(2); // this component receives job posts on first page via props
 	const [hasMore, setHasMore] = useState(true); // State to track if more items are available
 	const loader = useRef(null);
 
