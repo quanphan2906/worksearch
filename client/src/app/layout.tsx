@@ -3,17 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import UserProvider from "@/context/UserContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import {
-	Menubar,
-	MenubarContent,
-	MenubarItem,
-	MenubarMenu,
-	MenubarSeparator,
-	MenubarShortcut,
-	MenubarTrigger,
-} from "@/components/ui/menubar";
 
 import Sidebar from "@/components/navbar/SideBar";
+import SideBarWrapper from "@/components/SideBarWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,9 +31,9 @@ export default function RootLayout({
 					<body
 						className={`min-h-screen flex m-0 w-full ${inter.className}`}
 					>
-						<div className="w-1/4">
+						<SideBarWrapper>
 							<Sidebar />
-						</div>
+						</SideBarWrapper>
 						<main className="w-full mx-16">{children}</main>
 					</body>
 				</UserProvider>
