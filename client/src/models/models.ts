@@ -31,13 +31,12 @@ export interface JobPosting {
 
 export interface User {
 	email: string;
-	user_name: string;
-	gender: string;
-	birth_date: string; // Use ISO format for dates
-	gpa: number;
+	password: string;
+	gender?: string; // gender identity, optional
+	birth_date?: string; // Use ISO format for dates
 
-	skills: string[];
-	applications: Application[]; // Detailed applications by this user
+	skills?: string[];
+	applications?: Application[]; // Detailed applications by this user
 }
 
 export interface Application {

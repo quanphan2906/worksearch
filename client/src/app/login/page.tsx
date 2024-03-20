@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import LoginForm from "@/components/auth/LoginForm";
 import { TypographyP } from "@/components/ui/typography";
+import Link from "next/link";
 
 const Login = () => {
 	return (
@@ -22,7 +23,8 @@ const Login = () => {
 					</CardContent>
 					<CardFooter className="flex justify-between">
 						<TypographyP>
-							Havent had an account? Sign up here.
+							Havent had an account?
+							<Link href={"/signup"}> Sign up here </Link>
 						</TypographyP>
 					</CardFooter>
 				</Card>

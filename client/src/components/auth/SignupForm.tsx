@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import FormFieldWrapper from "@/components/common/FormFieldWrapper";
-import { login } from "@/services/auth";
-import { UserContext } from "@/context/UserContext";
 import { User } from "@/models/models";
+import { signup } from "@/services/auth";
 import { useRouter } from "next/navigation";
 
 // Define form schema
@@ -22,9 +21,8 @@ const formSchema = z.object({
 	}),
 });
 
-const LoginForm = () => {
+const SignupForm = () => {
 	const router = useRouter();
-	const { setUser } = useContext(UserContext);
 
 	// Define form using the form schema
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -39,16 +37,22 @@ const LoginForm = () => {
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		// values will take on the schema defined above
 		// This will be type-safe and validated ✅
-		const res = await login(values.email, values.password);
-		if (!res.ok) {
-			// TODO: Handle error
-			console.log(res);
-			return;
+
+		const newUser: User = {
+			email: values.email,
+			password: values.password,
+		};
+
+		const res = await signup(newUser);
+
+		if (res.ok) {
+			router.push("/");
 		}
 
-		const user = res.data as unknown as User;
-		setUser(user);
-		router.push("/");
+		if (!res.ok) {
+			// TODO: error handling
+			console.log(res);
+		}
 	};
 
 	return (
@@ -72,4 +76,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm;
+export default SignupForm;

@@ -6,10 +6,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import LoginForm from "@/components/auth/LoginForm";
+import SignupForm from "@/components/auth/SignupForm";
 import { TypographyP } from "@/components/ui/typography";
+import Link from "next/link";
 
-const Login = () => {
+const Signup = () => {
 	return (
 		<div className="flex justify-center">
 			<div className="flex py-16">
@@ -18,11 +19,12 @@ const Login = () => {
 						<CardTitle>Register</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<LoginForm></LoginForm>
+						<SignupForm></SignupForm>
 					</CardContent>
 					<CardFooter className="flex justify-between">
 						<TypographyP>
-							Havent had an account? Sign up here.
+							Already had an account?{" "}
+							<Link href={"/login"}> Login here </Link>
 						</TypographyP>
 					</CardFooter>
 				</Card>
@@ -31,4 +33,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Signup;

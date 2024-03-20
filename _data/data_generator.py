@@ -13,7 +13,7 @@ def generate_fake_user():
     user = {
         "id": email,
         "email": email,
-        "user_name": faker.user_name(),
+        "password": faker.sha256(raw_output=False),
         "gender": faker.random_element(elements=("male", "female", "other")),
         "birth_date": faker.date_of_birth(minimum_age=18, maximum_age=65).isoformat(),
         "skills": faker.words(nb=5),  # Generate 5 random skills for now
