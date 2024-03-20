@@ -21,23 +21,21 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="light"
-				enableSystem
-				disableTransitionOnChange
-			>
-				<UserProvider>
-					<body
-						className={`min-h-screen flex m-0 w-full ${inter.className}`}
-					>
+			<body className={`min-h-screen flex m-0 w-full ${inter.className}`}>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="light"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<UserProvider>
 						<SideBarWrapper>
 							<Sidebar />
 						</SideBarWrapper>
 						<main className="w-full mx-16">{children}</main>
-					</body>
-				</UserProvider>
-			</ThemeProvider>
+					</UserProvider>
+				</ThemeProvider>
+			</body>
 		</html>
 	);
 }
