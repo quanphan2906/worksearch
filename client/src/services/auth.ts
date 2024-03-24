@@ -11,7 +11,7 @@ export const login = async (
 	if (users.length === 0) {
 		return {
 			ok: false,
-			message: "User not found",
+			message: "Username not found.",
 		};
 	}
 
@@ -19,7 +19,7 @@ export const login = async (
 	if (user.password !== password) {
 		return {
 			ok: false,
-			message: "Invalid password",
+			message: "Incorrect password for this username.",
 		};
 	}
 

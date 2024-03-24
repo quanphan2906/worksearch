@@ -23,8 +23,14 @@ const Login = () => {
 					</CardContent>
 					<CardFooter className="flex justify-between">
 						<TypographyP>
-							Havent had an account?
-							<Link href={"/signup"}> Sign up here </Link>
+							Don&#39;t have an account?{" "}
+							<Link
+								href={"/signup"}
+								className="text-neutral-700 hover:text-neutral-900 underline"
+							>
+								{" "}
+								Sign up
+							</Link>
 						</TypographyP>
 					</CardFooter>
 				</Card>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +11,8 @@ import { login } from "@/services/auth";
 import { UserContext } from "@/context/UserContext";
 import { User } from "@/models/models";
 import { useRouter } from "next/navigation";
+import { TypographyP } from "../ui/typography";
+import { MdErrorOutline } from "react-icons/md";
 
 // Define form schema
 const formSchema = z.object({
@@ -25,6 +27,7 @@ const formSchema = z.object({
 const LoginForm = () => {
 	const router = useRouter();
 	const { setUser } = useContext(UserContext);
+	const [errorMsg, setErrorMsg] = useState("");
 
 	// Define form using the form schema
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -41,8 +44,7 @@ const LoginForm = () => {
 		// This will be type-safe and validated ✅
 		const res = await login(values.email, values.password);
 		if (!res.ok) {
-			// TODO: Handle error
-			console.log(res);
+			if (res.message) setErrorMsg(res.message);
 			return;
 		}
 
@@ -53,6 +55,17 @@ const LoginForm = () => {
 
 	return (
 		<Form {...form}>
+			{errorMsg === "" ? null : (
+				<div className="flex text-red-500 dark:text-red-900 mb-4">
+					<span className="flex items-center mr-2">
+						<MdErrorOutline />
+					</span>
+					<span>
+						<TypographyP> {errorMsg} </TypographyP>
+					</span>
+				</div>
+			)}
+
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 				<FormFieldWrapper
 					form={form}
@@ -66,7 +79,9 @@ const LoginForm = () => {
 					label="Password"
 					placeholder="not12345678"
 				/>
-				<Button type="submit">Submit</Button>
+				<Button type="submit" className="w-full">
+					Submit
+				</Button>
 			</form>
 		</Form>
 	);
