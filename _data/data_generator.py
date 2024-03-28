@@ -14,9 +14,10 @@ def generate_fake_user():
         "id": email,
         "email": email,
         "password": faker.sha256(raw_output=False),
-        "gender": faker.random_element(elements=("male", "female", "other")),
-        "birth_date": faker.date_of_birth(minimum_age=18, maximum_age=65).isoformat(),
-        "skills": faker.words(nb=5),  # Generate 5 random skills for now
+        "avatar": "https://picsum.photos/200/300",
+        "resume_link": faker.url(),
+        "social_link": faker.url(),
+        "portfolio": faker.url(),
         "applications": [],  # Placeholder for application details
     }
     return user

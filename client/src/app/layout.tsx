@@ -32,7 +32,9 @@ export default function RootLayout({
 						<SideBarWrapper>
 							<Sidebar />
 						</SideBarWrapper>
-						<main className="w-full mx-16">{children}</main>
+						<main className="w-full mx-16 flex justify-center">
+							{children}
+						</main>
 					</UserProvider>
 				</ThemeProvider>
 			</body>

@@ -8,6 +8,7 @@ import {
 	SetStateAction,
 } from "react";
 import { User } from "@/models/models";
+import { dummyUser } from "@/models/dummy";
 
 interface UserContextType {
 	user: User | null;
@@ -21,7 +22,7 @@ interface UserProviderProps {
 }
 
 function UserProvider({ children }: UserProviderProps) {
-	const [user, setUser] = useState<User | null>(null);
+	const [user, setUser] = useState<User | null>(dummyUser);
 
 	return (
 		<UserContext.Provider value={{ user, setUser }}>

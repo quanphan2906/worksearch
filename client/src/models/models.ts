@@ -32,11 +32,11 @@ export interface JobPosting {
 export interface User {
 	email: string;
 	password: string;
-	gender?: string; // gender identity, optional
-	birth_date?: string; // Use ISO format for dates
-
-	skills?: string[];
-	applications?: Application[]; // Detailed applications by this user
+	avatar: string | null;
+	resume_link: string | null;
+	social_link: string | null;
+	portfolio: string | null;
+	applications?: Application[];
 }
 
 export interface Application {
@@ -48,4 +48,9 @@ export interface Application {
 	// Optionally include nested objects for related entities
 	user?: User; // Include if displaying application details in the context of a job posting
 	job_posting?: JobPosting; // Include if displaying application details in the user context
+}
+
+export interface ImageType {
+	file?: File | null;
+	url?: string | null;
 }
