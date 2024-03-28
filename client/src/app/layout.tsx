@@ -5,7 +5,7 @@ import UserProvider from "@/context/UserContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 
 import Sidebar from "@/components/navbar/SideBar";
-import SideBarWrapper from "@/components/SideBarWrapper";
+import SideBarWrapper from "@/components/navbar/SideBarWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 

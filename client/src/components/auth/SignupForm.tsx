@@ -10,9 +10,8 @@ import FormFieldWrapper from "@/components/common/FormFieldWrapper";
 import { User } from "@/models/models";
 import { signup } from "@/services/auth";
 import { useRouter } from "next/navigation";
-import { MdErrorOutline } from "react-icons/md";
-import { TypographyP } from "../ui/typography";
 import { UserContext } from "@/context/UserContext";
+import ErrorMessage from "../common/ErrorMessage";
 
 // Define form schema
 const formSchema = z.object({
@@ -62,16 +61,7 @@ const SignupForm = () => {
 
 	return (
 		<Form {...form}>
-			{errorMsg === "" ? null : (
-				<div className="flex text-red-500 dark:text-red-900 mb-4">
-					<span className="flex items-center mr-2">
-						<MdErrorOutline />
-					</span>
-					<span>
-						<TypographyP> {errorMsg} </TypographyP>
-					</span>
-				</div>
-			)}
+			<ErrorMessage errorMsg={errorMsg} />
 
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 				<FormFieldWrapper

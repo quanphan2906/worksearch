@@ -15,6 +15,7 @@ import { User } from "@/models/models";
 import { useRouter } from "next/navigation";
 import { MdErrorOutline } from "react-icons/md";
 import { TypographyP } from "@/components/ui/typography";
+import ErrorMessage from "@/components/common/ErrorMessage";
 
 const formSchema = z.object({
 	email: z.string().email({ message: "Invalid email format." }),
@@ -151,16 +152,8 @@ const Profile = () => {
 						label="Portfolio"
 						placeholder="Link to your portfolio (if any)"
 					/>
-					{errorMsg === "" ? null : (
-						<div className="flex text-red-500 dark:text-red-900 mb-4">
-							<span className="flex items-center mr-2">
-								<MdErrorOutline />
-							</span>
-							<span>
-								<TypographyP> {errorMsg} </TypographyP>
-							</span>
-						</div>
-					)}
+
+					<ErrorMessage errorMsg={errorMsg} />
 
 					<Button type="submit" className="w-full">
 						Submit

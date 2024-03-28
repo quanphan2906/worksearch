@@ -90,7 +90,10 @@ const JobDetails = async ({ params }: JobDetailsProps) => {
 			</div>
 
 			<div className="mt-8">
-				<ApplicationDialog companyName={jobPost.company_name} />
+				<ApplicationDialog
+					companyName={jobPost.company_name}
+					job_id={jobPost.job_id}
+				/>
 			</div>
 
 			<div>
