@@ -8,6 +8,15 @@ import {
 } from "@/components/ui/typography";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
+import ApplicationDialog from "@/components/application/ApplicationDialog";
 
 // We can enable static rendering on dynamic routes
 // by giving Next all the possible query params
@@ -56,32 +65,32 @@ const JobDetails = async ({ params }: JobDetailsProps) => {
 		<div className="w-4/5 pt-16 pb-16">
 			<TypographyH1>{jobPost.title}</TypographyH1>
 			<div className="mt-12">
-				<TypographyP>
+				<div className="my-4">
 					<strong>Company</strong>: {jobPost.company_name}
-				</TypographyP>
-				<TypographyP>
+				</div>
+				<div className="my-4">
 					<strong>Location</strong>: {jobPost.location}
-				</TypographyP>
-				<TypographyP>
+				</div>
+				<div className="my-4">
 					<strong>Categories</strong>:{" "}
 					{jobPost.categories?.map((category: string) => (
 						<Badge className="ml-1" key={category}>
 							{category}
 						</Badge>
 					))}
-				</TypographyP>
-				<TypographyP>
+				</div>
+				<div className="my-4">
 					<strong>Skills</strong>:
 					{jobPost.skills?.map((skill: string) => (
 						<Badge className="ml-1" key={skill}>
 							{skill}
 						</Badge>
 					))}
-				</TypographyP>
+				</div>
 			</div>
 
 			<div className="mt-8">
-				<Button>Apply</Button>
+				<ApplicationDialog companyName={jobPost.company_name} />
 			</div>
 
 			<div>

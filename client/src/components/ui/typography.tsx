@@ -1,4 +1,4 @@
-import React from "react";
+import { cn } from "@/lib/utils";
 
 interface TypographyProps {
 	children: React.ReactNode;
@@ -27,9 +27,7 @@ export function TypographyH2({ children }: TypographyProps) {
 
 export function TypographyP({ children, className }: TypographyProps) {
 	return (
-		<p
-			className={`leading-7 [&:not(:first-child)]:mt-2 text-sm ${className}`}
-		>
+		<p className={`leading-7 [&:not(:first-child)]:mt-2 ${className}`}>
 			{children}
 		</p>
 	);
